@@ -107,16 +107,99 @@ void main() {
   }
 
   // ข้อที่ 18
-  print("ข้อที่ 18"); 
+  print("ข้อที่ 18");
   var isMember = true;
   var hasDiscount = false;
   print(isMember && hasDiscount);
 
   // ข้อที่ 19
   print("ข้อที่ 19");
+  isMember = true;
+  hasDiscount = false;
   print(isMember || hasDiscount);
 
   // ข้อที่ 20
   print("ข้อที่ 20");
+  isMember = true;
+  hasDiscount = false;
   print(!hasDiscount);
+
+  // ข้อที่ 21
+  print("ข้อที่ 21");
+  int age1 = 25;
+  if (age1 > 18) {
+    print("You are an adult.");
+  }
+
+  // ข้อที่ 22
+  print("ข้อที่ 22");
+  int number = -5;
+  if (number > 0) {
+    print("Positive");
+  } else {
+    print("Negative or Zero");
+  }
+
+  // ข้อที่ 23
+  print("ข้อที่ 23");
+  for (var i = 1; i <= 5; i++) {
+    print(i);
+  }
+
+  // ข้อที่ 24
+  print("ข้อที่ 24");
+  var count = 1;
+  while (count <= 3) {
+    print(count);
+    count++;
+  }
+
+  // ข้อที่ 25
+  print("ข้อที่ 25");
+  int score1 = 80;
+  String result = score1 >= 60 ? "Pass" : "Fail";
+  print(result);
+
+  // ข้อที่ 26
+  print("ข้อที่ 26");
+  int day = 3;
+  switch (day) {
+    case 3:
+      print("Wednesday");
+      break;
+    default:
+      print("Invalid Day");
+  }
+
+  // ข้อที่ 27
+  print("ข้อที่ 27");
+  for (var i = 1; i <= 10; i++) {
+    if (i == 4) break;
+    print(i);
+  }
+
+  // ข้อที่ 28
+  print("ข้อที่ 28");
+  for (var i = 1; i <= 5; i++) {
+    if (i == 3) continue;
+    print(i);
+  }
+
+  // ข้อที่ 29
+  print("ข้อที่ 29");
+  int temp = 28;
+  if (temp > 30) {
+    print("It's hot.");
+  } else if (temp >= 20) {
+    print("It's warm.");
+  } else {
+    print("It's cool.");
+  }
+
+  // ข้อที่ 30
+  print("ข้อที่ 30");
+  int number30 = 5;
+  do {
+    print(number30);
+  } while (number30 < 5);
 }
