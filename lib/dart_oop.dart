@@ -1,417 +1,446 @@
 import 'dart:math';
 
-// Dart Practice 3 (Functions & OOP)
-// แบบฝึกปฏิบัติภาษา Dart 3: ฟังก์ชัน และ การเขียนโปรแกรมเชิงวัตถุ
-// คำตอบและการพิมพ์เป็นภาษาไทย ตามลำดับข้อที่ร้องขอ
+// Functions
+void printMyName() {
+  print("My nickname is Pop");
+}
 
-// ------------------ Helper Classes & Types ------------------
+int getCurrentYear() {
+  return 2024;
+}
 
+int multiply(int a, int b) {
+  return a * b;
+}
+
+void sayGoodbye() => print("Goodbye!");
+
+void showUserDetails({String? name, int? age}) {
+  print("Name: $name, Age: $age");
+}
+
+void greet({required String name, String greeting = "Hello"}) {
+  print("$greeting, $name");
+}
+
+void showUserDetailsRequired({required String name, int? age}) {
+  print("Name: $name, Age: $age");
+}
+
+bool isEven(int number) => number % 2 == 0;
+
+void logMessage(String message, [String level = "INFO"]) {
+  print("[$level] $message");
+}
+
+void processNumbers(List<int> list, Function(int) action) {
+  for (var number in list) {
+    action(number);
+  }
+}
+
+void printSquare(int n) {
+  print("Square of $n is ${n * n}");
+}
+
+// OOP Part 1
 class Car {
-	String? color;
-	int? year;
+  String? color;
+  int? year;
+  static const int numberOfWheels = 4;
 
-	void drive() {
-		if (color != null) {
-			print('Driving the $color car...');
-		} else {
-			print('The car is driving...');
-		}
-	}
-
-	static const int numberOfWheels = 4;
+  void drive() {
+    print("Driving the $color car...");
+  }
 }
 
 class Book {
-	String title;
-	int pages;
-	Book(this.title, this.pages);
+  final String title;
+  final int pages;
+  Book({required this.title, required this.pages});
 }
 
 class MathHelper {
-	static int add(int a, int b) => a + b;
+  static int add(int a, int b) => a + b;
 }
 
 class User {
-	String username;
-	User(this.username);
-	User.guest() : username = 'Guest';
+  String username;
+  User(this.username);
+  User.guest() : username = "Guest";
 }
 
-class CirclePart1 {
-	double radius;
-	CirclePart1(this.radius);
-	double get area => pi * radius * radius;
+class Circle {
+  final double radius;
+  Circle(this.radius);
+  double get area => pi * radius * radius;
 }
 
 class BankAccount {
-	double _balance = 0;
-	set deposit(double amount) {
-		if (amount > 0) _balance += amount;
-	}
-	double get balance => _balance;
+  double _balance = 0;
+  set deposit(double amount) {
+    if (amount > 0) {
+      _balance += amount;
+    }
+  }
+  double get balance => _balance;
 }
 
 class DatabaseConnection {
-	static int connectionCount = 0;
-	DatabaseConnection() {
-		connectionCount++;
-	}
+  static int connectionCount = 0;
+  DatabaseConnection() {
+    connectionCount++;
+  }
 }
 
-// OOP Part 2 helpers
+// OOP Part 2
 class Vehicle {
-	void move() => print('Moving...');
+  void move() {
+    print("Moving...");
+  }
 }
 
-class CarChild extends Vehicle {
-	@override
-	void move() => print('Driving the car...');
+class Car2 extends Vehicle {
+  @override
+  void move() {
+    print("Driving the car...");
+  }
 }
 
-enum TrafficLight { red, yellow, green }
+enum TrafficLight {
+  red,
+  yellow,
+  green
+}
 
 mixin Flyer {
-	void fly() => print('I am flying!');
+  void fly() {
+    print("I am flying!");
+  }
 }
 
 class Bird with Flyer {}
 
 class Person {
-	String name;
-	Person(this.name);
+  String name;
+  Person(this.name);
 }
 
 class Student extends Person {
-	int studentId;
-	Student(String name, this.studentId) : super(name);
+  int studentId;
+  Student(String name, this.studentId) : super(name);
 }
 
 abstract class Database {
-	void connect();
+  void connect();
 }
 
 class MySQLDatabase extends Database {
-	@override
-	void connect() => print('Connecting to MySQL...');
+  @override
+  void connect() {
+    print("Connecting to MySQL...");
+  }
 }
 
 abstract class Logger {
-	void log(String message);
+  void log(String message);
 }
 
 class ConsoleLogger implements Logger {
-	@override
-	void log(String message) => print('LOG: $message');
+  @override
+  void log(String message) {
+    print("LOG: $message");
+  }
 }
 
 class Animal {
-	void eat() => print('Animal is eating.');
+  void eat() {
+    print("Animal is eating.");
+  }
 }
 
 class Dog extends Animal {
-	@override
-	void eat() {
-		super.eat();
-		print('Dog is eating bones.');
-	}
+  @override
+  void eat() {
+    super.eat();
+    print("Dog is eating bones.");
+  }
 }
 
-mixin Walker { void walk() => print('Walking...'); }
-mixin Swimmer { void swim() => print('Swimming...'); }
+mixin Walker {
+  void walk() {
+    print("Walking...");
+  }
+}
+
+mixin Swimmer {
+  void swim() {
+    print("Swimming...");
+  }
+}
 
 class Duck with Walker, Swimmer {}
 
 void checkLight(TrafficLight light) {
-	switch (light) {
-		case TrafficLight.red:
-			print('STOP');
-			break;
-		case TrafficLight.yellow:
-			print('WAIT');
-			break;
-		case TrafficLight.green:
-			print('GO');
-			break;
-	}
+  switch (light) {
+    case TrafficLight.red:
+      print("STOP");
+      break;
+    case TrafficLight.yellow:
+      print("WAIT");
+      break;
+    case TrafficLight.green:
+      print("GO");
+      break;
+  }
 }
 
 abstract class Shape {
-	String color;
-	Shape(this.color);
-	double getArea();
+  String color;
+  Shape(this.color);
+  double getArea();
 }
 
-class Circle extends Shape {
-	double radius;
-	Circle(this.radius, String color) : super(color);
-	@override
-	double getArea() => pi * radius * radius;
+class CircleShape extends Shape {
+  double radius;
+  CircleShape(this.radius, String color) : super(color);
+
+  @override
+  double getArea() {
+    return pi * radius * radius;
+  }
 }
 
-// ------------------ Functions ------------------
-
-void printMyName() {
-	print('ฉันชื่อเล่น: (ใส่ชื่อเล่นของคุณที่นี่)');
-}
-
-int getCurrentYear() => DateTime.now().year;
-
-int multiply(int a, int b) => a * b;
-
-void sayGoodbye() => print('Goodbye!');
-
-void showUserDetails({String? name, int? age}) {
-	print('Name: ${name ?? 'ไม่ระบุ'}, Age: ${age ?? 'ไม่ระบุ'}');
-}
-
-void showUserDetailsRequired({required String name, int? age}) {
-	print('Required - Name: $name, Age: ${age ?? 'ไม่ระบุ'}');
-}
-
-bool isEven(int number) => number % 2 == 0;
-
-void logMessage(String message, [String level = 'INFO']) {
-	print('[$level] $message');
-}
-
-void processNumbers(List<int> list, void Function(int) action) {
-	for (var n in list) action(n);
-}
-
-void printSquare(int n) => print(n * n);
-
-// ------------------ main (เรียงข้อเป็นภาษาไทย) ------------------
 void main() {
-	// โครงสร้างข้อมูล (Collections)
-	print('ข้อที่ 1');
-	List animals = ['Tiger', 'Lion', 'Cat'];
-	print(animals[1]); // พิมพ์สมาชิกตัวที่ 2 (Index 1)
+  // Collections
+  print("\n=== Collections ===");
+  print("\nข้อที่ 1");
+  List<String> animals = ["Tiger", "Lion", "Cat"]; 
+  print(animals[1]);
 
-	print('\nข้อที่ 2');
-	animals.add('Dog');
-	print(animals);
+  print("\nข้อที่ 2");
+  animals.add("Dog");
+  print(animals);
 
-	print('\nข้อที่ 3');
-	print('จำนวนสมาชิก = ${animals.length}');
+  print("\nข้อที่ 3");
+  print("จำนวนสมาชิกใน List animals คือ: ${animals.length}");
 
-	print('\nข้อที่ 4');
-	Map<String, int> studentScore = {'math': 90, 'english': 85};
-	print('math = ${studentScore['math']}');
+  print("\nข้อที่ 4");
+  Map<String, int> studentScore = {
+    "math": 90,
+    "english": 85
+  };
+  print("คะแนนวิชา math คือ: ${studentScore["math"]}");
 
-	print('\nข้อที่ 5');
-	Set<int> uniqueNumbers = {10, 20, 10, 30, 20};
-	// เมื่อพิมพ์ออกมา Set จะเก็บค่าแบบไม่ซ้ำ
-	print(uniqueNumbers);
+  print("\nข้อที่ 5");
+  Set<int> uniqueNumbers = Set<int>.from([10, 20, 10, 30, 20]);
+  print("ค่าใน Set uniqueNumbers คือ: $uniqueNumbers");
 
-	print('\nข้อที่ 6');
-	List colors = ['Red', 'Green', 'Blue'];
-	colors.removeAt(1); // ลบ 'Green'
-	print(colors);
+  print("\nข้อที่ 6");
+  List<String> colors = ["Red", "Green", "Blue"];
+  print("List colors ก่อนลบ: $colors");
+  colors.removeAt(1);
+  print("List colors หลังลบ: $colors");
 
-	print('\nข้อที่ 7');
-	List<int> numbers = [5, 10, 15, 10];
-	print(numbers.indexOf(10)); // ตำแหน่งแรกของ 10
+  print("\nข้อที่ 7");
+  List<int> numbers = [5, 10, 15, 10];
+  int index = numbers.indexOf(10);
+  print("เลข 10 อยู่ที่ index: $index");
 
-	print('\nข้อที่ 8');
-	List<String> names = <String>[];
-	names.add('John');
-	// names.add(123); // หาก uncomment จะเกิด compile-time error
-	print(names);
+  print("\nข้อที่ 8");
+  List<String> names = [];
+  names.add("John");
+  print("หลังเพิ่ม String: $names");
+  // names.add(123);  // Error: The argument type 'int' can't be assigned to the parameter type 'String'
 
-	print('\nข้อที่ 9');
-	for (var a in animals) print('Animal: $a');
+  print("\nข้อที่ 9");
+  for (String animal in animals) {
+    print("Animal: $animal");
+  }
 
-	print('\nข้อที่ 10');
-	print(studentScore.containsKey('science'));
+  print("\nข้อที่ 10");
+  bool hasScience = studentScore.containsKey("science");
+  print("studentScore มี key 'science' หรือไม่: $hasScience");
 
-	print('\nข้อที่ 11');
-	List<int> listA = [1, 2];
-	List<int> listB = [3, 4];
-	List<int> combined = [0, ...listA, ...listB, 5];
-	print(combined);
+  print("\nข้อที่ 11");
+  List<int> listA = [1, 2];
+  List<int> listB = [3, 4];
+  List<int> combined = [0, ...listA, ...listB, 5];
+  print("Combined list: $combined");
 
-	print('\nข้อที่ 12');
-	bool isPremiumUser = false;
-	List<String> features = ['Basic Feature', if (isPremiumUser) 'Premium Feature'];
-	print(features);
+  print("\nข้อที่ 12");
+  bool isPremiumUser = false;
+  List<String> features = [
+    "Basic Feature",
+    if (isPremiumUser) "Premium Feature",
+  ];
+  print("Available features: $features");
 
-	print('\nข้อที่ 13');
-	List<int> original = [1, 2, 3];
-	List<int> squares = [for (var v in original) v * v];
-	print(squares);
+  print("\nข้อที่ 13");
+  List<int> original = [1, 2, 3];
+  List<int> squares = [
+    for (int number in original) number * number
+  ];
+  print("Squares: $squares");
 
-	print('\nข้อที่ 14');
-	studentScore.forEach((k, v) => print('Subject: $k, Score: $v'));
+  print("\nข้อที่ 14");
+  studentScore.forEach((subject, score) {
+    print("Subject: $subject, Score: $score");
+  });
 
-	print('\nข้อที่ 15');
-	print('คำอธิบาย: Set เก็บค่าแบบไม่ซ้ำ (unique) ดังนั้นค่าที่ซ้ำกันจะถูกตัดออก จึงเหลือเพียง 10, 20, 30');
+  print("\nข้อที่ 15");
+  print("อธิบาย Set ในข้อ 5:");
+  print("Set เป็นโครงสร้างข้อมูลที่เก็บเฉพาะค่าที่ไม่ซ้ำกัน");
+  print("เมื่อใส่ข้อมูล [10, 20, 10, 30, 20] ลงใน Set");
+  print("- 10 ตัวที่สองถูกละทิ้งเพราะซ้ำกับ 10 ตัวแรก");
+  print("- 20 ตัวที่สองถูกละทิ้งเพราะซ้ำกับ 20 ตัวแรก");
+  print("จึงเหลือเพียง 3 ค่าที่ไม่ซ้ำกันคือ [10, 20, 30]");
 
-	// ฟังก์ชัน (Functions)
-	print('\nFunctions - ข้อที่ 1');
-	printMyName();
+  // Functions
+  print("\n=== Functions ===");
+  print("\nข้อที่ 1");
+  printMyName();
 
-	print('\nFunctions - ข้อที่ 2');
-	print(getCurrentYear());
+  print("\nข้อที่ 2");
+  int year = getCurrentYear();
+  print("Current year: $year");
 
-	print('\nFunctions - ข้อที่ 3');
-	print(multiply(3, 4));
+  print("\nข้อที่ 3, 5");
+  int result = multiply(10, 5);
+  print("10 x 5 = $result");
 
-	print('\nFunctions - ข้อที่ 4');
-	sayGoodbye();
+  print("\nข้อที่ 4");
+  sayGoodbye();
 
-	print('\nFunctions - ข้อที่ 5');
-	print(multiply(10, 5));
+  print("\nข้อที่ 6, 7");
+  showUserDetails(name: "David", age: 30);
 
-	print('\nFunctions - ข้อที่ 6');
-	showUserDetails(name: null, age: null);
+  print("\nข้อที่ 8");
+  greet(name: "Alice");
+  greet(name: "Bob", greeting: "Hi");
 
-	print('\nFunctions - ข้อที่ 7');
-	showUserDetails(age: 30, name: 'David');
+  print("\nข้อที่ 9");
+  showUserDetailsRequired(name: "John", age: 25);
 
-	print('\nFunctions - ข้อที่ 8');
-	void greet({required String name, String greeting = 'Hello'}) {
-		print('$greeting, $name');
-	}
-	greet(name: 'Alice');
-	greet(name: 'Bob', greeting: 'Hi');
+  print("\nข้อที่ 10");
+  List<int> numbersList = [1, 2, 3];
+  numbersList.forEach((number) {
+    print("Number: $number");
+  });
 
-	print('\nFunctions - ข้อที่ 9');
-	showUserDetailsRequired(name: 'Eva', age: 22);
+  print("\nข้อที่ 11");
+  print("Is 4 even? ${isEven(4)}");
+  print("Is 7 even? ${isEven(7)}");
 
-	print('\nFunctions - ข้อที่ 10');
-	List<int> nums = [1, 2, 3];
-	nums.forEach((n) => print('Number: $n'));
+  print("\nข้อที่ 12");
+  logMessage("Error found");
+  logMessage("Critical error", "ERROR");
 
-	print('\nFunctions - ข้อที่ 11');
-	print(isEven(4));
+  print("\nข้อที่ 13, 14");
+  processNumbers([1, 2, 3], printSquare);
 
-	print('\nFunctions - ข้อที่ 12');
-	logMessage('Error found');
-	logMessage('Critical error', 'ERROR');
+  print("\nข้อที่ 15");
+  processNumbers([10, 20], (number) {
+    print("Value: $number");
+  });
 
-	print('\nFunctions - ข้อที่ 13');
-	processNumbers([1, 2, 3], printSquare);
+  // OOP Part 1
+  print("\n=== OOP Part 1 ===");
+  print("\nข้อที่ 1");
+  Car myCar1 = Car();
+  print("Created empty Car object");
 
-	print('\nFunctions - ข้อที่ 14');
-	processNumbers([1, 2, 3], printSquare);
+  print("\nข้อที่ 2");
+  Car myCar2 = Car();
+  myCar2.color = "Red";
+  print("Car color: ${myCar2.color}");
 
-	print('\nFunctions - ข้อที่ 15');
-	processNumbers([10, 20], (n) => print('Value: $n'));
+  print("\nข้อที่ 3, 4");
+  Car myCar3 = Car();
+  myCar3.color = "Blue";
+  myCar3.drive();
 
-	// การเขียนโปรแกรมเชิงวัตถุ (OOP) - ตอนที่ 1
-	print('\nOOP Part1 - ข้อที่ 1');
-	var myCar = Car();
-	print('สร้าง object myCar จากคลาส Car');
+  print("\nข้อที่ 5");
+  print("Number of wheels: ${Car.numberOfWheels}");
 
-	print('\nOOP Part1 - ข้อที่ 2');
-	myCar.color = 'Red';
-	myCar.year = 2021;
-	print(myCar.color);
+  print("\nข้อที่ 6, 7");
+  Book myBook = Book(title: "Dart Basics", pages: 200);
+  print("Book: ${myBook.title}, Pages: ${myBook.pages}");
 
-	print('\nOOP Part1 - ข้อที่ 3');
-	var myCar2 = Car();
-	myCar2.drive();
+  print("\nข้อที่ 8, 9");
+  int sum = MathHelper.add(15, 30);
+  print("15 + 30 = $sum");
 
-	print('\nOOP Part1 - ข้อที่ 4');
-	myCar.color = 'Red';
-	print('Driving the ${myCar.color} car...');
+  print("\nข้อที่ 10");
+  User guestUser = User.guest();
+  print("Username: ${guestUser.username}");
 
-	print('\nOOP Part1 - ข้อที่ 5');
-	print('Car.numberOfWheels = ${Car.numberOfWheels}');
+  print("\nข้อที่ 11");
+  Circle circle = Circle(5.0);
+  print("Circle area: ${circle.area}");
 
-	print('\nOOP Part1 - ข้อที่ 6');
-	var myBook = Book('Dart Basics', 200);
-	print('Book: ${myBook.title}, pages: ${myBook.pages}');
+  print("\nข้อที่ 12, 13, 14");
+  BankAccount myAccount = BankAccount();
+  myAccount.deposit = 100;  // Should work
+  myAccount.deposit = -50;  // Should not work
+  print("Balance: ${myAccount.balance}"); // Expected: 100.0
 
-	print('\nOOP Part1 - ข้อที่ 7');
-	// myBook สร้างแล้วข้างต้น
+  print("\nข้อที่ 15");
+  DatabaseConnection();
+  DatabaseConnection();
+  DatabaseConnection();
+  print("Total connections: ${DatabaseConnection.connectionCount}"); // Expected: 3
 
-	print('\nOOP Part1 - ข้อที่ 8');
-	print(MathHelper.add(15, 30));
+  // OOP Part 2
+  print("\n=== OOP Part 2 ===");
+  print("\nข้อที่ 1, 2, 3");
+  Car2 myCar = Car2();
+  myCar.move();
 
-	print('\nOOP Part1 - ข้อที่ 9');
-	var guestUser = User.guest();
-	print('guest username: ${guestUser.username}');
+  print("\nข้อที่ 4");
+  var light = TrafficLight.red;
+  print("Traffic light: $light");
 
-	print('\nOOP Part1 - ข้อที่ 10');
-	var c1 = CirclePart1(2.0);
-	print('Circle area (part1): ${c1.area}');
+  print("\nข้อที่ 5");
+  Bird bird = Bird();
+  bird.fly();
 
-	print('\nOOP Part1 - ข้อที่ 11');
-	var myAccount = BankAccount();
-	myAccount.deposit = 100;
-	myAccount.deposit = -50; // จะถูกละเลยเพราะ amount <= 0
-	print('myAccount.balance: ${myAccount.balance}');
+  print("\nข้อที่ 6");
+  Student student = Student("John", 12345);
+  print("Student: ${student.name}, ID: ${student.studentId}");
 
-	print('\nOOP Part1 - ข้อที่ 12');
-	// setter deposit และ getter balance ใช้ได้แล้ว
+  print("\nข้อที่ 7");
+  print("ไม่สามารถสร้าง object จาก abstract class ได้โดยตรง");
+  // var db = Database();  // Error: Cannot instantiate abstract class
 
-	print('\nOOP Part1 - ข้อที่ 13');
-	print('balance getter used above -> ${myAccount.balance}');
+  print("\nข้อที่ 8, 9");
+  MySQLDatabase mysql = MySQLDatabase();
+  mysql.connect();
 
-	print('\nOOP Part1 - ข้อที่ 14');
-	DatabaseConnection.connectionCount = 0;
-	DatabaseConnection();
-	DatabaseConnection();
-	DatabaseConnection();
-	print('DatabaseConnection.connectionCount = ${DatabaseConnection.connectionCount}');
+  print("\nข้อที่ 10");
+  ConsoleLogger logger = ConsoleLogger();
+  logger.log("Test message");
 
-	// การเขียนโปรแกรมเชิงวัตถุ (OOP) - ตอนที่ 2
-	print('\nOOP Part2 - ข้อที่ 1');
-	var vehicle = Vehicle();
-	vehicle.move();
+  print("\nข้อที่ 11");
+  Dog dog = Dog();
+  dog.eat();
 
-	print('\nOOP Part2 - ข้อที่ 2');
-	var carChild = CarChild();
-	carChild.move();
+  print("\nข้อที่ 12");
+  print("extends vs implements:");
+  print("1. extends: สืบทอดทั้งคุณสมบัติและการทำงานจากคลาสแม่");
+  print("2. implements: บังคับให้คลาสต้องมีเมธอดตาม interface แต่ต้องเขียนโค้ดใหม่ทั้งหมด");
 
-	print('\nOOP Part2 - ข้อที่ 3');
-	// เมธอด move ถูก override ใน CarChild แล้ว
+  print("\nข้อที่ 13");
+  Duck duck = Duck();
+  duck.walk();
+  duck.swim();
 
-	print('\nOOP Part2 - ข้อที่ 4');
-	print(TrafficLight.values);
+  print("\nข้อที่ 14");
+  checkLight(TrafficLight.red);
+  checkLight(TrafficLight.yellow);
+  checkLight(TrafficLight.green);
 
-	print('\nOOP Part2 - ข้อที่ 5');
-	var bird = Bird();
-	bird.fly();
-
-	print('\nOOP Part2 - ข้อที่ 6');
-	var student = Student('Alice', 123);
-	print('Student: ${student.name}, id: ${student.studentId}');
-
-	print('\nOOP Part2 - ข้อที่ 7');
-	print('คำตอบ: การสร้างอ็อบเจกต์จาก abstract class เช่น var db = Database(); จะเกิดข้อผิดพลาด เพราะ abstract class อาจมีเมธอดนามธรรมที่ไม่มีการนิยามการทำงาน');
-
-	print('\nOOP Part2 - ข้อที่ 8');
-	print('ใน abstract class Database มีเมธอดนามธรรม connect() ที่ยังไม่ถูกนิยาม');
-
-	print('\nOOP Part2 - ข้อที่ 9');
-	var mysql = MySQLDatabase();
-	mysql.connect();
-
-	print('\nOOP Part2 - ข้อที่ 10');
-	var logger = ConsoleLogger();
-	logger.log('This is a log');
-
-	print('\nOOP Part2 - ข้อที่ 11');
-	var dog = Dog();
-	dog.eat();
-
-	print('\nOOP Part2 - ข้อที่ 12');
-	print('คำอธิบาย: extends จะสืบทอดการทำงานและโครงสร้างจากคลาสแม่ ส่วน implements จะทำให้คลาสต้องนิยามเมธอดทั้งหมดของ interface ที่ implements');
-
-	print('\nOOP Part2 - ข้อที่ 13');
-	var duck = Duck();
-	duck.walk();
-	duck.swim();
-
-	print('\nOOP Part2 - ข้อที่ 14');
-	checkLight(TrafficLight.red);
-	checkLight(TrafficLight.yellow);
-	checkLight(TrafficLight.green);
-
-	print('\nOOP Part2 - ข้อที่ 15');
-	var circle2 = Circle(3.0, 'blue');
-	print('Circle area (part2): ${circle2.getArea()}');
+  print("\nข้อที่ 15");
+  CircleShape circleShape = CircleShape(5.0, "Blue");
+  print("Circle area: ${circleShape.getArea()}, Color: ${circleShape.color}");
 }
-
